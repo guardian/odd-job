@@ -1,0 +1,13 @@
+New log file opened at Mon Apr 13 16:04:22 BST 2015 by 10180@32582
+Taking next connection to: 61689
+New client attempting to connect on port: 61690-61689
+  Address = /10.233.240.49:61689
+This client on port 61690 has uuid f48f8198-216f-4dbd-8df4-9ca9da4215ef configName activator humanReadableName Activator protocolVersion 1 featureTags Vector()
+Connected Clients: activator-f48f8198-216f-4dbd-8df4-9ca9da4215ef
+Taking next connection to: 61689
+Checking to see if clients are empty...
+No non-daemon clients connected after 3 min. Shutting down.
+Server socket thread exiting.
+0 clients open, will close them...
+All client sockets have been closed.
+Closing the 10180@32582 logs at Mon Apr 13 16:07:22 BST 2015, goodbye.
