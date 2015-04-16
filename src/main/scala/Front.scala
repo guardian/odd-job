@@ -4,8 +4,7 @@
 case class Front(url: String) extends JsonHandler(url) {
 
   def getFront(url: String) = {
-    val file = saveJsonFileFromUrl(url)
-    val json = getJsonStringFromFile(file)
+    val json = getEndpointAndJson(url)
     val id = json.\("id")
     println("Saving endpoint ID: "+ id)
     val uris: List[String] = (json \ "layout" \\ "uri").map(_.as[String]).toList

@@ -30,4 +30,10 @@ abstract class JsonHandler(url: String) {
     new File("./cache/", fileUri.getPath + ".json")
   }
 
+  def getEndpointAndJson(url: String): JsValue = {
+    val file = saveJsonFileFromUrl(url)
+    val json = getJsonStringFromFile(file)
+    json
+  }
+
 }
