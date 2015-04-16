@@ -1,38 +1,47 @@
 import play.api.libs.json._
 
 import scala.io.Source
-import sys.process._
-import java.net.URL
 import java.io.File
+import java.net.URI
+import scalax.io.{Resource, Output}
 
 object ParentJson {
 
   def main(args: Array[String]): Unit ={
-    saveJsonFileFromUrl("http://mobile-apps.guardianapis.com/uk/fronts/home", "homepage")
-    getJsonStringFromFile("homepage.json")
-    getFront("homepage.json")
+    getFront("http://mobile-apps.guardianapis.com/uk/fronts/home")
   }
 
-  def saveJsonFileFromUrl(url: String, filename: String) = {
-    val filenameFormatted: String = s"$filename.json"
-    new URL(url) #> new File(filenameFormatted) !!
+  def saveJsonFileFromUrl(url: String): File = {
+    val file = generateFile(url)
+    if (!file.exists())
+      file.getParentFile().mkdirs()
+    val content = scala.io.Source.fromURL(url).mkString
+    val output:Output = Resource.fromFile(file)
+    output.write(content)
+    file
   }
 
-  def getJsonStringFromFile(filename: String): JsValue = {
-    Json.parse(Source.fromFile(filename).mkString)
+  def getJsonStringFromFile(file: File): JsValue = {
+    Json.parse(Source.fromFile(file).mkString)
   }
 
-  def getFront(filename: String) = {
-    val json = getJsonStringFromFile(filename)
+  def generateFile(url: String) = {
+    val fileUri = URI.create(url)
+    new File("./cache/", fileUri.getPath + ".json")
+  }
+
+  def getFront(url: String) = {
+    val file = saveJsonFileFromUrl(url)
+    val json = getJsonStringFromFile(file)
     val id = json.\("id")
-    println(id)
+    println("Saving endpoint ID: "+ id)
     val uris: List[String] = (json \ "layout" \\ "uri").map(_.as[String]).toList
-    println(uris)
-    println(uris.size)
-
+    println("Saving " + uris.size + " uris")
     for (i <- 0 until uris.size) {
-      saveJsonFileFromUrl(uris(i), i.toString)
+      saveJsonFileFromUrl(uris(i))
     }
   }
+
+  //TODO: getList, getItem, getTagSearch, getNavigation
 
 }
