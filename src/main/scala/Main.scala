@@ -9,8 +9,9 @@ object Main {
 
     val nav = Navigation("http://mobile-apps.guardianapis.com/uk/navigation")
     nav.getNavigation(nav.url)
-  }
 
-  //TODO: getList, getTagSearch
+    val search = TagSearch("Putin")
+    search.getTagSearchResult(search.searchQuery)
+  }
 
 }

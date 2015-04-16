@@ -1,7 +1,7 @@
 /**
  * Created by jhare-winton on 16/04/2015.
  */
-case class Item (url: String) extends JsonHandler(url) {
+case class Item (url: String) extends JsonHandler {
 
   def getItem(url: String) = {
     val json = getEndpointAndJson(url)

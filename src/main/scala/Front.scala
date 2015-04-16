@@ -1,7 +1,7 @@
 /**
  * Created by jhare-winton on 16/04/2015.
  */
-case class Front(url: String) extends JsonHandler(url) {
+case class Front(url: String) extends JsonHandler {
 
   def getFront(url: String) = {
     val json = getEndpointAndJson(url)

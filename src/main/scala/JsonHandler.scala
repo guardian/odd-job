@@ -9,7 +9,7 @@ import scalax.io.{Resource, Output}
 /**
  * Created by jhare-winton on 16/04/2015.
  */
-abstract class JsonHandler(url: String) {
+abstract class JsonHandler {
 
   def saveJsonFileFromUrl(url: String): File = {
     val file = generateFileNameAndDeleteExisting(url)
