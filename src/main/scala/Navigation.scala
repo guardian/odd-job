@@ -4,7 +4,7 @@
 case class Navigation(url: String) extends JsonHandler(url) {
 
   def getNavigation(url: String) = {
-    getEndpointAndJson(url)
+    saveJsonFileFromUrl(url)
     println("Saving navigation endpoint")
   }
 

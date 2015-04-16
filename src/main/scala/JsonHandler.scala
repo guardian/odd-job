@@ -12,7 +12,7 @@ import scalax.io.{Resource, Output}
 abstract class JsonHandler(url: String) {
 
   def saveJsonFileFromUrl(url: String): File = {
-    val file = generateFile(url)
+    val file = generateFileNameAndDeleteExisting(url)
     if (!file.exists())
       file.getParentFile().mkdirs()
     val content = scala.io.Source.fromURL(url).mkString
@@ -25,7 +25,14 @@ abstract class JsonHandler(url: String) {
     Json.parse(Source.fromFile(file).mkString)
   }
 
-  def generateFile(url: String) = {
+  def generateFileNameAndDeleteExisting(url: String) = {
+    val file = generateFileName(url)
+    if (file.exists())
+      file.delete()
+    file
+  }
+
+  def generateFileName(url: String) = {
     val fileUri = URI.create(url)
     new File("./cache/", fileUri.getPath + ".json")
   }
