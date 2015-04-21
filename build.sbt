@@ -1,3 +1,5 @@
+organization := "com.guardian"
+
 name := "oddjob"
 
 version := "1.0"
