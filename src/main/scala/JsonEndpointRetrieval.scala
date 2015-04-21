@@ -6,7 +6,9 @@ import play.api.libs.json.{Json, JsValue}
 import scala.io.Source
 import scalax.io.{Resource, Output}
 
-abstract class JsonEndpointRetrieval {
+case class JsonEndpointRetrieval() {
+
+  val mapiPrefix = "http://mobile-apps.guardianapis.com/"
 
   def saveJsonFileFromUrl(url: String): File = {
     val file = generateFileNameAndDeleteExisting(url)
@@ -31,7 +33,12 @@ abstract class JsonEndpointRetrieval {
 
   def generateFileName(url: String) = {
     val fileUri = URI.create(url)
-    new File("./cache/", fileUri.getPath + ".json")
+    if (url.startsWith(mapiPrefix + "search")){
+      val searchQuery = url.stripPrefix(mapiPrefix + "search?query=")
+      new File("./cache/", fileUri.getPath + "?query=" + searchQuery + ".json")
+    }
+    else
+      new File("./cache/", fileUri.getPath + ".json")
   }
 
   def getEndpointAndJson(url: String): JsValue = {
@@ -39,10 +46,6 @@ abstract class JsonEndpointRetrieval {
     val json = getJsonStringFromFile(file)
     json
   }
-
-}
-
-case class Front(url: String) extends JsonEndpointRetrieval {
 
   def getFront(url: String) = {
     val json = getEndpointAndJson(url)
@@ -55,44 +58,16 @@ case class Front(url: String) extends JsonEndpointRetrieval {
     }
   }
 
-}
-
-case class List(url: String) extends JsonEndpointRetrieval {
-
   def getList(url: String) = {
     val json = getEndpointAndJson(url)
     val id = json.\("id")
     println("Saving endpoint ID: "+ id)
   }
 
-}
-
-case class Navigation(url: String) extends JsonEndpointRetrieval {
-
   def getNavigation(url: String) = {
     saveJsonFileFromUrl(url)
     println("Saving navigation endpoint")
   }
-
-}
-
-case class TagSearch(searchQuery: String) extends JsonEndpointRetrieval {
-
-  val searchURL = "http://mobile-apps.guardianapis.com/search?query="
-
-  def getTagSearchResult(searchQuery: String) = {
-    saveJsonFileFromUrl(searchURL + searchQuery)
-    println("Saving " + searchQuery + " tag search endpoint")
-  }
-
-  override def generateFileName(url: String) = {
-    val fileUri = URI.create(url)
-    new File("./cache/", fileUri.getPath + "?query=" + searchQuery + ".json")
-  }
-
-}
-
-case class Item (url: String) extends JsonEndpointRetrieval {
 
   def getItem(url: String) = {
     val json = getEndpointAndJson(url)
@@ -103,6 +78,12 @@ case class Item (url: String) extends JsonEndpointRetrieval {
     for (i <- 0 until relatedUris.size) {
       saveJsonFileFromUrl(relatedUris(i))
     }
+  }
+
+  def getTagSearchResult(url: String) = {
+    val searchQuery = url.stripPrefix("http://mobile-apps.guardianapis.com/search?query=")
+    println("Saving " + searchQuery + " tag search endpoint")
+    saveJsonFileFromUrl(url)
   }
 
 }
