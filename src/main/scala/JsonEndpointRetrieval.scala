@@ -51,10 +51,10 @@ case class JsonEndpointRetrieval() {
     val json = getEndpointAndJson(url)
     val id = json.\("id")
     println("Saving endpoint ID: "+ id)
-    val uris = (json \ "layout" \\ "uri").map(_.as[String]).toList
+    val uris = (json \ "layout" \\ "uri").map(_.as[String])
     println("Saving " + uris.size + " uris")
-    for (i <- 0 until uris.size) {
-      saveJsonFileFromUrl(uris(i))
+    for (uri <- uris) {
+      saveJsonFileFromUrl(uri)
     }
   }
 
@@ -73,10 +73,10 @@ case class JsonEndpointRetrieval() {
     val json = getEndpointAndJson(url)
     val id = json.\("id")
     println("Saving endpoint ID: "+ id)
-    val relatedUris = (json \ "links" \\ "relatedUri").map(_.as[String]).toList
+    val relatedUris = (json \ "links" \\ "relatedUri").map(_.as[String])
     println("Saving related content uris")
-    for (i <- 0 until relatedUris.size) {
-      saveJsonFileFromUrl(relatedUris(i))
+    for (uri <- relatedUris) {
+      saveJsonFileFromUrl(uri)
     }
   }
 

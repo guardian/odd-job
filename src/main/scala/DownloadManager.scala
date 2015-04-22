@@ -10,26 +10,30 @@ case class DownloadManager() {
   val itemsRegex = "items/.*".r
   val searchRegex = "search?.*".r
 
-  def downloadFromFile(filename: String) = {
-    val lines = scala.io.Source.fromFile(new File(filename)).getLines().toList
-    for (i <- 0 until lines.size) {
-      val id = lines(i).stripPrefix(downloader.mapiPrefix)
-      executeDownloadById(id)
-    }
+  def downloadFromFile(filename: String): List[String] = {
+    val source = scala.io.Source.fromFile(new File(filename))
+    val lines = source.getLines().toList
+    source.close()
+    val results = for {
+      line <- lines
+      id = line.stripPrefix(downloader.mapiPrefix)
+      result = executeDownloadById(id)
+    } yield result
+    results.filter(_.isLeft).map(_.left.get)
   }
 
   def constructURL(id: String): String = {
     downloader.mapiPrefix + id
   }
 
-  def executeDownloadById(id: String) = {
+  def executeDownloadById(id: String): Either[String, Unit] = {
     id match {
-      case frontsRegex() => downloader.getFront(constructURL(id))
-      case listsRegex() => downloader.getList(constructURL(id))
-      case navRegex() => downloader.getNavigation(constructURL(id))
-      case itemsRegex() => downloader.getItem(constructURL(id))
-      case searchRegex() => downloader.getTagSearchResult(constructURL(id))
-      case _ => throw new UnsupportedOperationException("ID: " + id + " - is an unsupported endpoint")
+      case frontsRegex() => Right(downloader.getFront(constructURL(id)))
+      case listsRegex() => Right(downloader.getList(constructURL(id)))
+      case navRegex() => Right(downloader.getNavigation(constructURL(id)))
+      case itemsRegex() => Right(downloader.getItem(constructURL(id)))
+      case searchRegex() => Right(downloader.getTagSearchResult(constructURL(id)))
+      case _ => Left("ID: " + id + " - is an unsupported endpoint")
     }
   }
 
