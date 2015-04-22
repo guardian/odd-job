@@ -7,6 +7,7 @@ This will take a user provided list of MAPI endpoints, and download them locally
 
 **Running**
 
+- Requires SBT
 - Clone the repo
 - Create a file called download.txt in the root
 - Populate the download.txt file with a list of all required MAPI endpoints. Each endpoint should on a new line, with no separators, eg:
