@@ -14,8 +14,9 @@ case class DownloadManager() {
     val source = scala.io.Source.fromFile(new File(filename))
     val lines = source.getLines().toList
     source.close()
+    val finalLines = lines.distinct
     val results = for {
-      line <- lines
+      line <- finalLines
       id = line.stripPrefix(downloader.mapiPrefix)
       result = executeDownloadById(id)
     } yield result
