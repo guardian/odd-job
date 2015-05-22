@@ -5,7 +5,7 @@ case class DownloadManager() {
 
   val downloader = new JsonEndpointRetrieval
   val frontsRegex = "^[ukas]{2}/fronts/.*".r
-  val listsRegex = "^[ukas]{2}/lists/.*".r
+  val listsRegex = "lists/.*".r
   val navRegex = "^[ukas]{2}/navigation".r
   val itemsRegex = "items/.*".r
   val searchRegex = "search?.*".r
