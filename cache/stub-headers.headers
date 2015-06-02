@@ -1,0 +1,18 @@
+Accept-Ranges:bytes
+Age:141
+Connection:keep-alive
+Content-Type:application/json; charset=utf-8
+Date:Mon, 11 May 2015 15:03:22 GMT
+ETag:"0687569e36f7f5ebd694895b1956e678372e5fd4"
+Expires:Mon, 11 May 2099 15:06:02 GMT
+Keep-Alive:60
+Last-Modified:Mon, 11 May 2015 15:01:02 GMT
+OkHttp-Received-Millis:1431356603207
+OkHttp-Selected-Protocol:http/1.1
+OkHttp-Sent-Millis:1431356603140
+Vary:Accept-Encoding
+Via:HTTP/1.1 proxy464
+X-Cache-Hits:1, 138
+X-Served-By:cache-lcy1124-LCY, cache-lhr6321-LHR
+X-Served-By-Mapi:true
+X-Timer:S1431356602.856689,VS0,VE0

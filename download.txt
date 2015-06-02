@@ -1,0 +1,14 @@
+http://mobile-apps.guardianapis.com/uk/fronts/home
+http://mobile-apps.guardianapis.com/uk/navigation
+http://mobile-apps.guardianapis.com/lists/tag/football/series/footballweekly
+http://mobile-apps.guardianapis.com/lists/tag/profile/vladimir-putin
+http://mobile-apps.guardianapis.com/search?query=Football%20Weekly
+http://mobile-apps.guardianapis.com/search?query=Vladimir%20Putin
+http://mobile-apps.guardianapis.com/search?query=marc%20jones
+http://mobile-apps.guardianapis.com/lists/tag/profile/marc-jones
+http://mobile-apps.guardianapis.com/search?query=Breaking%20Bad%3A%20episode%20by%20episode
+http://mobile-apps.guardianapis.com/lists/tag/tv-and-radio/series/breaking-bad-episode-by-episode
+http://mobile-apps.guardianapis.com/search?query=Best%20photographs%20of%20the%20day
+http://mobile-apps.guardianapis.com/lists/tag/news/series/ten-best-photographs-of-the-day
+http://mobile-apps.guardianapis.com/search?query=Brick-by-brick
+http://mobile-apps.guardianapis.com/lists/tag/sport/series/brick-by-brick
