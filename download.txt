@@ -12,3 +12,5 @@ http://mobile-apps.guardianapis.com/search?query=Best%20photographs%20of%20the%2
 http://mobile-apps.guardianapis.com/lists/tag/news/series/ten-best-photographs-of-the-day
 http://mobile-apps.guardianapis.com/search?query=Brick-by-brick
 http://mobile-apps.guardianapis.com/lists/tag/sport/series/brick-by-brick
+http://mobile-apps.guardianapis.com/uk/fronts/sport
+http://mobile-apps.guardianapis.com/uk/fronts/lifeandstyle/food-and-drink
