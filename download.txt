@@ -14,3 +14,4 @@ http://mobile-apps.guardianapis.com/search?query=Brick-by-brick
 http://mobile-apps.guardianapis.com/lists/tag/sport/series/brick-by-brick
 http://mobile-apps.guardianapis.com/uk/fronts/sport
 http://mobile-apps.guardianapis.com/uk/fronts/lifeandstyle/food-and-drink
+http://mobile-apps.guardianapis.com/lists/tag/info/developer-blog
